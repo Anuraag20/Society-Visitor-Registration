@@ -1,7 +1,3 @@
-#This software will help in registration of visitors in  a housing society..
-#Following are the Client Requirements...
-# (1) Visitor Name      (2) Mobile      (3) Address     (4) Purpose     (5) Company (if any)        (6)Timings
-
 from share import SharedClass as s
 import check
 import mysql.connector
