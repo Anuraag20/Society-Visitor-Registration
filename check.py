@@ -13,9 +13,9 @@ def check_data_in():
         return
     elif e1.isalpha() and e2.isalpha():
         a=True
-        pass
     else:
-        messagebox.showerror(title="ERROR",message="First and Last names cannot contain any numerical values. ")  
+        messagebox.showerror(title="ERROR",message="First and Last names cannot contain any numerical values. ")
+        return
 
     try:
         e3 = int(s.mob.get())
@@ -67,9 +67,9 @@ def check_data_out():
         return
     elif e1.isalpha() and e2.isalpha():
         a=True
-        pass
     else:
         messagebox.showerror(title="ERROR",message="First and Last names cannot contain any numerical values. ")
+        return
 
     if e5=='':
         messagebox.showerror(title="ERROR",message="Please enter a valid Wing ")
