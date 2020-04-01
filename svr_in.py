@@ -1,5 +1,4 @@
 
-
 from share import SharedClass as s
 import check
 import mysql.connector
