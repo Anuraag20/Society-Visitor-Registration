@@ -1,30 +1,48 @@
-import tkinter
+import check
+from share import SharedClass as s
+from tkinter import messagebox
 from tkinter import *
 from time import strftime
 import datetime
 from datetime import *
 import mysql.connector
 
+#Declaring a function for clearing the fields
+def clearout():
+    ent_fn.delete(0,END)
+    ent_ln.delete(0, END)
+    ent_wn.delete(0, END)
+    ent_fl.delete(0, END) 
+
+
+
+
 #Declaring Function for SQL Connection
 def mysql_connection():
-    db = mysql.connector.connect(host = "localhost", port = 1895, user ="root", passwd = "root", db = "society_visitors")
-    cq = db.cursor()
+    if check.check_data_out():
+        db = mysql.connector.connect(host = "localhost", port = 1895, user ="root", passwd = "root", db = "society_visitors")
+        cq = db.cursor()
 
-    e1 = f_name.get()
-    e2 = l_name.get()
-    e5 = wing.get()
-    e6 = flat.get()
-    e11 = date.get()
-    e12= cout_time.get()
+        e1 = s.f_name.get()
+        e2 = s.l_name.get()
+        e5 = s.wing.get()
+        e6 = s.flat.get()
+        e11 = date.get()
+        e12= cout_time.get()
 
-    Q = "UPDATE visitors SET cout_d = %s WHERE first_name = %s and last_name = %s and wing = %s and flat = %s"
-    Q1 = "UPDATE visitors SET cout_t = %s WHERE first_name = %s and last_name = %s and wing = %s and flat = %s"
-    val = (e11, e1, e2, e5, e6)
-    val1 = (e12, e1, e2, e5, e6)
-    cq.execute(Q, val)
-    cq.execute(Q1, val1)
-    db.commit()
-    db.close() 
+        try:
+            Q = "UPDATE visitors SET cout_d = %s WHERE first_name = %s and last_name = %s and wing = %s and flat = %s"
+            Q1 = "UPDATE visitors SET cout_t = %s WHERE first_name = %s and last_name = %s and wing = %s and flat = %s"
+            val = (e11, e1, e2, e5, e6)
+            val1 = (e12, e1, e2, e5, e6)
+            cq.execute(Q, val)
+            cq.execute(Q1, val1)
+            db.commit()
+            db.close()
+        except:
+            messagebox.showerror(title="ERROR",message="Please check whether you have entered the proper data ")
+        else:
+            clearout()
 
 root = Tk()
 root.title("Society Visitor Checkout")
@@ -45,17 +63,17 @@ cout_time= StringVar(root, value= time())
 
 
 #Declaring Variables for program
-f_name = StringVar()
-l_name = StringVar()
-wing = StringVar()
-flat = IntVar()
+s.f_name = StringVar()
+s.l_name = StringVar()
+s.wing = StringVar()
+s.flat = IntVar()
 
 
 #Basic entry details to access database
 lab_fn = Label(root, text = "First Name")
 lab_ln = Label(root, text = "Last Name")
-ent_fn = Entry(root, textvariable = f_name)
-ent_ln = Entry(root, textvariable = l_name)
+ent_fn = Entry(root, textvariable = s.f_name)
+ent_ln = Entry(root, textvariable = s.l_name)
 lab_fn.grid(row = 2, column = 2)
 ent_fn.grid(row = 3, column = 2)
 lab_ln.grid(row = 2, column = 4)
@@ -63,9 +81,9 @@ ent_ln.grid(row = 3, column = 4)
 
 
 lab_wn = Label(root, text = "Wing")
-ent_wn = Entry(root, textvariable = wing)
+ent_wn = Entry(root, textvariable = s.wing)
 lab_fl = Label(root, text = "Flat No.")
-ent_fl = Entry(root, textvariable = flat)
+ent_fl = Entry(root, textvariable = s.flat)
 lab_wn.grid(row = 4, column = 2)
 ent_wn.grid(row = 5, column = 2)
 lab_fl.grid(row = 4, column = 4)

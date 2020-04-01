@@ -2,7 +2,8 @@
 #Following are the Client Requirements...
 # (1) Visitor Name      (2) Mobile      (3) Address     (4) Purpose     (5) Company (if any)        (6)Timings
 
-
+from share import SharedClass as s
+import check
 import mysql.connector
 from tkinter import messagebox 
 from tkinter import *
@@ -42,35 +43,22 @@ cin_time= StringVar(root, value= time())
 
 #Defining Function For Database Connector
 def sql_connection():
-    db = mysql.connector.connect(host = "localhost", port = 1895, user ="root", passwd = "root", db = "society_visitors")
-    cq = db.cursor()
+    if check.check_data_in():
+        db = mysql.connector.connect(host = "localhost", port = 1895, user ="root", passwd = "root", db = "society_visitors")
+        cq = db.cursor()
 
-    try:
-        e3 = int(mob.get())
-    except:
-        messagebox.showerror(title="ERROR",message="Please enter a valid Mobile Number")
-    try:
-        e6 = int(flat.get())
-    except:
-        messagebox.showerror(title="ERROR",message="Please enter a valid Flat Number ")
-    try:
-        e13 = int(wt_code.get())
-    except:
-        messagebox.showerror(title="ERROR",message="Please enter a valid Watchman Code")
+        e1 = s.f_name.get()
+        e2 = s.l_name.get()
+        e3 = int(s.mob.get())
+        e4 = s.add.get()
+        e5 = s.wing.get()
+        e6 = int(s.flat.get())
+        e7 = s.pur.get()
+        e8 = s.com_name.get()
+        e9 = cin_datetime.get()
+        e10= cin_time.get()
+        e13 = int(s.wt_code.get())
 
-
-    e1 = f_name.get()
-    e2 = l_name.get()
-    e4 = add.get()
-    e5 = wing.get()
-    e7 = pur.get()
-    e8 = com_name.get()
-    e9 = cin_datetime.get()
-    e10= cin_time.get()
-
-
-
-    if e1.isalpha() and e2.isalpha():
         try:
 
             Q = "INSERT INTO visitors(first_name, last_name, mobile, address, wing, flat, purpose, company_name, cin_d, cin_t, watchman_code) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
@@ -82,71 +70,71 @@ def sql_connection():
             messagebox.showerror(title="ERROR",message="Please check whether you have entered the proper data ")
         else:
             clear()
-    elif e1=='' or e2=='':
-        messagebox.showerror(title="ERROR",message="First and Last names cannot be blank.")  
-    else:
-        messagebox.showerror(title="ERROR",message="First and Last names cannot contain numericals. ")
-        
+            
+
+  
 
 
 
+
+    
 #Variable Declaration
-f_name = StringVar() 
-l_name = StringVar()
-mob = StringVar()
-add = StringVar()
-wing = StringVar()
-flat = StringVar()
-pur = StringVar()
-com_name = StringVar()
-wt_code = StringVar()
+s.f_name = StringVar() 
+s.l_name = StringVar()
+s.mob = StringVar()
+s.add = StringVar()
+s.wing = StringVar()
+s.flat = StringVar()
+s.pur = StringVar()
+s.com_name = StringVar()
+s.wt_code = StringVar()
 
 
 #MAIN PROGRAM
 
 #First Name 
 lab_fn = Label(root, text = "First Name")
-ent_fn = Entry(root, textvariable = f_name)
+ent_fn = Entry(root, textvariable = s.f_name)
 lab_fn.grid(row = 3, column = 2)
 ent_fn.grid(row = 4, column = 2)
 
 #Last Name
 lab_ln = Label(root, text = "Last Name")
-ent_ln = Entry(root, textvariable = l_name)
+ent_ln = Entry(root, textvariable = s.l_name)
 lab_ln.grid(row = 3, column = 4)
 ent_ln.grid(row = 4, column = 4)
 
 #Contact Details
 lab_m = Label(root, text = "Mobile")
-ent_m = Entry(root, textvariable = mob)
+ent_m = Entry(root, textvariable = s.mob)
 lab_m.grid(row = 5, column = 2)
 ent_m.grid(row = 6, column = 2)
 
 #Address
 lab_add = Label(root, text = "Visitor's Address")
-ent_add = Entry(root, textvariable = add)
+ent_add = Entry(root, textvariable = s.add)
 lab_add.grid(row = 5, column = 4)
 ent_add.grid(row = 6, column = 4)
 
 #Wing & Flat to be visited
 lab_wing = Label(root, text = "Wing")
-ent_wing = Entry(root, textvariable = wing)
+ent_wing = Entry(root, textvariable = s.wing)
 lab_wing.grid(row = 7, column = 2)
 ent_wing.grid(row = 8, column = 2)
 lab_flat = Label(root, text = "Flat No.")
-ent_flat = Entry(root, textvariable = flat)
+ent_flat = Entry(root, textvariable = s.flat)
 lab_flat.grid(row = 7, column = 4)
 ent_flat.grid(row = 8, column = 4)
 
 #Purpose
 lab_p = Label(root, text = "Purpose of Visit??")
-ent_p = Entry(root, textvariable = pur)
+ent_p = Entry(root, textvariable = s.pur)
 lab_p.grid(row = 9, column = 2)
 ent_p.grid(row = 10, column = 2)
 
 #Company Name (if any)
 lab_com = Label(root, text = "Company Name(if any)")
-ent_com = Entry(root, textvariable = com_name)
+ent_com = Entry(root, textvariable = s.com_name)
 lab_com.grid(row = 9, column = 4)
 ent_com.grid(row = 10, column = 4)
 
@@ -161,7 +149,7 @@ labelt.grid(row = 14, column = 4)
 
 #Watchman Details
 lab_watchman_code = Label(root, text = "Watchman Code")
-ent_watchman_code = Entry(root, textvariable = wt_code)
+ent_watchman_code = Entry(root, textvariable = s.wt_code)
 lab_watchman_code.grid(row = 15, column = 3)
 ent_watchman_code.grid(row = 16, column = 3)
 
