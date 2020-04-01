@@ -1,6 +1,4 @@
-#This software will help in registration of visitors in  a housing society..
-#Following are the Client Requirements...
-# (1) Visitor Name      (2) Mobile      (3) Address     (4) Purpose     (5) Company (if any)        (6)Timings
+
 
 from share import SharedClass as s
 import check
@@ -29,7 +27,7 @@ def clear():
 #Declaring datetime variables
 d_1 = datetime.now()
 d = d_1.strftime("%d/%m/%Y")
-cin_datetime = StringVar(root, value = d)
+cin_datetime = StringVar(root, value=d)
 
 labelt=Label(root)
 def time(): 
@@ -38,7 +36,7 @@ def time():
     labelt.after(1000, time)
     return Time
 time()
-cin_time= StringVar(root, value= time())
+cin_time= StringVar(root, value=time())
 
 
 #Defining Function For Database Connector
@@ -76,8 +74,6 @@ def sql_connection():
 
 
 
-
-    
 #Variable Declaration
 s.f_name = StringVar() 
 s.l_name = StringVar()
