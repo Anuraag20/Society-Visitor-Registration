@@ -17,8 +17,13 @@ def check_data_in():
         messagebox.showerror(title="ERROR",message="First and Last names cannot contain any numerical values. ")
         return
 
+
     try:
         e3 = int(s.mob.get())
+        if (len(str(e3))!=10):
+            messagebox.showerror(title="ERROR",message="Please enter a 10-digit Mobile Number")
+            a=False
+            return
     except:
         messagebox.showerror(title="ERROR",message="Please enter a valid Mobile Number")
         a=False
