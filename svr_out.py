@@ -9,7 +9,8 @@ import mysql.connector
 
 #Declaring a function for clearing the fields
 def clearout():
-    ent_fn.delete(0,END)
+    ent_sr.delete(0, END)
+    ent_fn.delete(0, END)
     ent_ln.delete(0, END)
     ent_wn.delete(0, END)
     ent_fl.delete(0, END) 
