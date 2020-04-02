@@ -26,16 +26,16 @@ def clear():
 #Declaring datetime variables
 d_1 = datetime.now()
 d = d_1.strftime("%d/%m/%Y")
-cin_datetime = StringVar(root, value=d)
+cin_datetime = StringVar(root, value = d)
 
 labelt=Label(root)
 def time(): 
-    Time = strftime('%H:%M:%S %p') 
+    Time = strftime('%H:%M:%S') 
     labelt.config(text = Time) 
     labelt.after(1000, time)
     return Time
 time()
-cin_time= StringVar(root, value=time())
+cin_time= StringVar(root, value = time())
 
 
 #Defining Function For Database Connector
@@ -62,11 +62,19 @@ def sql_connection():
             val = (e1, e2, e3, e4, e5, e6, e7, e8, e9,e10 ,e13)
             cq.execute(Q, val)
             db.commit()
-            db.close()
         except:
-            messagebox.showerror(title="ERROR",message="Please check whether you have entered the proper data ")
+            messagebox.showerror(title = "ERROR",message = "Please check whether you have entered the proper data ")
         else:
+            Q = "SELECT sr_no FROM visitors ORDER BY sr_no DESC LIMIT 1"
+            cq.execute(Q)
+            records=cq.fetchall()
+            for record in records:
+                visitor_code=record[0]
+            thanks_msg = "Thanks for visiting!! Your visitor code is " + str(visitor_code)
+            db.close()
+            messagebox.showinfo(title = "THANK YOU",message = thanks_msg)
             clear()
+            
             
 
   
