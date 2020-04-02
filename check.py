@@ -81,7 +81,7 @@ def check_data_out():
                     a = True
                     break
         if a is False:
-            messagebox.showerror(title = "ERROR", message = "The enetered visitor code was not found in the database. ")
+            messagebox.showerror(title = "ERROR", message = "The entered visitor code was not found in the database. ")
             db.close()
             return
 
