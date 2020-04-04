@@ -10,6 +10,7 @@ from time import strftime
 
 root = Tk()
 root.title("Society Visitor Check-IN")
+
 #For clearing the values
 def clear():
     ent_fn.delete(0,END)
@@ -76,11 +77,6 @@ def sql_connection():
             clear()
             
             
-
-  
-
-
-
 #Variable Declaration
 s.f_name = StringVar() 
 s.l_name = StringVar()

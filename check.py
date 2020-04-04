@@ -120,6 +120,9 @@ def check_data_out():
         a = True
 
     return a
+
+def check_data_reg():
+    pass #Code to be completed
     
 
 

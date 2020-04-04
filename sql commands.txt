@@ -13,5 +13,18 @@ cin_d varchar(20) not null,
 cin_t varchar(20) not null,
 cout_d varchar(20) default 'NULL',
 cout_t varchar(20) default 'NULL',
-watchman_code int(10) not null 
+watchman_code bigint(10) not null 
 );
+--------------------------------------------------------------------------------------
+create table watchmen
+(
+watchman_code bigint(10) primary key not null auto_increment ,
+wfirst_name varchar(25) not null,
+wlast_name varchar(25) not null,
+w_mobile bigint(25) not null,
+w_address varchar(100) not null,
+wcin_d varchar(20) not null,
+w_dob varchar(20) not null
+)
+
+alter table watchmen auto_increment=50000
