@@ -17,7 +17,6 @@ def clearout():
 
 
 
-
 #Declaring Function for SQL Connection
 def mysql_connection():
     if check.check_data_out():
@@ -30,7 +29,7 @@ def mysql_connection():
         e5 = s.wing.get()
         e6 = s.flat.get()
         e11 = date.get()
-        e12= cout_time.get()
+        e12= time()
 
         try:
             Q = "UPDATE visitors SET cout_d = %s WHERE sr_no = %s and first_name = %s and last_name = %s and wing = %s and flat = %s"

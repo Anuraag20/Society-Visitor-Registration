@@ -54,7 +54,7 @@ def sql_connection():
         e7 = s.pur.get()
         e8 = s.com_name.get()
         e9 = cin_datetime.get()
-        e10= cin_time.get()
+        e10= time()
         e13 = int(s.wt_code.get())
 
         try:
@@ -65,6 +65,7 @@ def sql_connection():
             db.commit()
         except:
             messagebox.showerror(title = "ERROR",message = "Please check whether you have entered the proper data ")
+            db.close()
         else:
             Q = "SELECT sr_no FROM visitors ORDER BY sr_no DESC LIMIT 1"
             cq.execute(Q)
