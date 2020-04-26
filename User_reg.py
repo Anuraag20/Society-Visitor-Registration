@@ -28,24 +28,31 @@ def store():
         db = mysql.connector.connect(host = "localhost", port = 1895, user ="root", passwd = "root", db = "society_visitors")
         cq = db.cursor()
 
-        e1 = s.f_name.get()
-        e2 = s.l_name.get()
+        e1 = s.f_name.get().upper()
+        e2 = s.l_name.get().upper()
         e3 = int(s.mob.get())
         e4 = s.add.get()
         e5 = d
         a = s.birth.get_date()
         e6 = a.strftime('%d/%m/%Y')
-        e7 = s.passwd.get()
-        e8 = s.des.get()
+        e7 = s.des.get()
 
         try:
 
-            Q = "INSERT INTO employee (e_firstname, e_lastname, e_mobile, e_address, e_joindate, e_birthday, passwd, e_designation) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-            val = (e1, e2, e3, e4, e5, e6, e7, e8)
+            Q = "INSERT INTO employee (e_firstname, e_lastname, e_mobile, e_address, e_joindate, e_birthday, e_designation) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            val = (e1, e2, e3, e4, e5, e6, e7)
             cq.execute(Q, val)
+
             db.commit()
-        except:
+
+            Q2 = "INSERT INTO passwords (passwd) VALUES (%s)"
+            val2 = (s.passwd.get(), )
+            cq.execute(Q2, val2)
+
+            db.commit()
+        except ImportError as e:
             messagebox.showerror(title = "ERROR",message = "Please check whether you have entered the proper data ")
+            print(e)
         else:
             Q = "SELECT employee_code FROM employee ORDER BY employee_code DESC LIMIT 1"
             cq.execute(Q)

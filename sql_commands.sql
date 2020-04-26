@@ -25,7 +25,6 @@ e_firstname varchar(25) not null,
 e_lastname varchar(25) not null,
 e_address varchar(100) not null,
 e_mobile bigint(20) not null,
-passwd varchar(25) not null,
 e_birthday varchar(20) not null,
 e_joindate varchar(20) not null,
 e_designation varchar(20) not null
@@ -44,3 +43,13 @@ ecout_d varchar(12) default 'NULL',
 ecout_t varchar(12) default 'NULL'
 ); 
 --------------------------------------------------------------------------------------
+
+create table passwords
+(
+employee_code bigint(6) primary key auto_increment,
+passwd varchar(25) not null,
+foreign key (employee_code) references employee(employee_code)
+);
+
+alter table passwords auto_increment=50000;
+

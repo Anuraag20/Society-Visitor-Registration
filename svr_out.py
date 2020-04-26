@@ -24,8 +24,8 @@ def mysql_connection():
         cq = db.cursor()
 
         e0 = s.sr.get()
-        e1 = s.f_name.get()
-        e2 = s.l_name.get()
+        e1 = s.f_name.get().upper() 
+        e2 = s.l_name.get().upper()
         e5 = s.wing.get()
         e6 = s.flat.get()
         e11 = date.get()
@@ -43,6 +43,7 @@ def mysql_connection():
         except:
             messagebox.showerror(title="ERROR",message="Please check whether you have entered the proper data ")
         else:
+            messagebox.showinfo(title="Thank you!",message="Thanks for visiting! See you again!!")
             clearout()
 
 root = Tk()

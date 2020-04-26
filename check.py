@@ -72,7 +72,8 @@ def check_data_in():
 
     return a
 
-#A function to check whether the entered data is correct in the Visitors OUT module
+# A function to check whether the entered data is correct in the Visitors OUT module
+# Add the functionality to check whether the other details entered are right
 def check_data_out():
     e1 = s.f_name.get()
     e2 = s.l_name.get()
@@ -209,7 +210,8 @@ def check_data_registration():
 
 # A function to check the employee code and password
 # It doesn't mention exactly whether the username or password is incorrect for security reasons
-def check_credentials():
+#MAAKE CHANGESSS
+def check_credentials(*args):
     db = mysql.connector.connect(host = "localhost", port = 1895, user ="root", passwd = "root", db = "society_visitors")
     
     a=False
@@ -219,7 +221,7 @@ def check_credentials():
     cq = db.cursor()
     
     # This block of code checks whether the actual employee code/ password is correct     
-    Q = "SELECT passwd FROM employee WHERE employee_code = %s "
+    Q = "SELECT passwd FROM passwords WHERE employee_code = %s "
     cq.execute(Q, usr)
     records = cq.fetchall()
     for record in records:
@@ -234,6 +236,11 @@ def check_credentials():
         db.close()
         return a
 
+    for arg in args:
+        if arg == 0:
+            db.close()
+            return a 
+
     #This block of code stops the user from checking-in/out twice in a row(It doesnt really work)
     Q = "SELECT sr_no FROM emp_att WHERE employee_code = %s ORDER BY sr_no DESC LIMIT 1"
     cq.execute(Q, usr)
@@ -242,7 +249,7 @@ def check_credentials():
         sr_no = record[0]    
     
     if records == [] and s.r.get() == 2:
-        messagebox.showerror(title = "ERROR", message = "You cannot check out without checking in !! ")
+        messagebox.showerror(title = "ERROR", message = "You cannot check out without checking in!! ")
         a = False
     elif records == [] and s.r.get() == 1:
         a = True
