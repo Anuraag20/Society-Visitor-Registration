@@ -26,26 +26,31 @@ def data_access():
 
       if d[0][0] == 'Watchman':
          try:
-            s.droot.destroy()
-            cq.execute('SELECT sr_no, first_name, last_name, flat, wing from visitors')
-            cursor = cq.fetchall()
-
             from views import watchman
-            watchman(cursor, e1)
-         except ImportError as e:
+            w = watchman(e1, d[0][0])
+         except Exception as e:
             print(e)
          else:
-            pass
+            w.db.close()
       
       elif d[0][0] == 'Security Supervisor':
          try:
             from views import sec_supervisor
-            sec_supervisor(d, e1)
-         except ImportError as e:
+            sec = sec_supervisor(e1)
+         except Exception as e:
             print(e)
          else:
-            print('Thenk')
+            sec.db.close()
 
+
+      elif d[0][0] == 'Property Manager':
+         try:
+            from views import manager
+            man = manager(e1)
+         except Exception as e:
+            print(e)
+         else:
+            man.db.close()           
 
 
 #Variable declaration

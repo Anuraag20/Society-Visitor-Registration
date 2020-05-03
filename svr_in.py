@@ -59,7 +59,7 @@ def sql_connection():
 
         try:
 
-            Q = "INSERT INTO visitors(first_name, last_name, mobile, address, wing, flat, purpose, company_name, cin_d, cin_t, watchman_code) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            Q = "INSERT INTO visitors(f_name, l_name, mobile, address, wing, flat, purpose, company_name, cin_d, cin_t, watchman_code) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
             val = (e1, e2, e3, e4, e5, e6, e7, e8, e9,e10 ,e13)
             cq.execute(Q, val)
             db.commit()
@@ -67,7 +67,7 @@ def sql_connection():
             messagebox.showerror(title = "ERROR",message = "Please check whether you have entered the proper data ")
             db.close()
         else:
-            Q = "SELECT sr_no FROM visitors ORDER BY sr_no DESC LIMIT 1"
+            Q = "SELECT v_code FROM visitors ORDER BY v_code DESC LIMIT 1"
             cq.execute(Q)
             records=cq.fetchall()
             for record in records:

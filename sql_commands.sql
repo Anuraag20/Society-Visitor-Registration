@@ -1,9 +1,9 @@
 create table visitors
 
 (
-sr_no bigint(8) primary key not null auto_increment,
-first_name varchar(25) not null,
-last_name varchar(25) not null,
+v_code bigint(8) primary key not null auto_increment,
+f_name varchar(25) not null,
+l_name varchar(25) not null,
 mobile bigint(11) not null,
 address varchar(100) not null,
 wing varchar(2) not null,
@@ -16,6 +16,9 @@ cout_d varchar(12) default 'NULL',
 cout_t varchar(12) default 'NULL',
 watchman_code bigint(6) not null 
 );
+
+alter table visitors auto_increment=1000;
+
 
 --------------------------------------------------------------------------------------
 create table employee

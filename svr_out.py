@@ -32,8 +32,8 @@ def mysql_connection():
         e12= time()
 
         try:
-            Q = "UPDATE visitors SET cout_d = %s WHERE sr_no = %s and first_name = %s and last_name = %s and wing = %s and flat = %s"
-            Q1 = "UPDATE visitors SET cout_t = %s WHERE sr_no = %s and first_name = %s and last_name = %s and wing = %s and flat = %s"
+            Q = "UPDATE visitors SET cout_d = %s WHERE v_code = %s and f_name = %s and l_name = %s and wing = %s and flat = %s"
+            Q1 = "UPDATE visitors SET cout_t = %s WHERE v_code = %s and f_name = %s and l_name = %s and wing = %s and flat = %s"
             val = (e11, e0, e1, e2, e5, e6)
             val1 = (e12, e0, e1, e2, e5, e6)
             cq.execute(Q, val)

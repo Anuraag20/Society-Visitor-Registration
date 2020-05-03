@@ -85,7 +85,7 @@ def check_data_out():
         a = False
         e0 = int(s.sr.get())
         cq = db.cursor()
-        Q = "SELECT sr_no FROM visitors"
+        Q = "SELECT v_code FROM visitors"
         cq.execute(Q)
         records=cq.fetchall()
         for record in records:
@@ -277,3 +277,5 @@ def check_credentials(*args):
             a = False
         
     return a
+
+
